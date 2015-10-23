@@ -1134,7 +1134,9 @@
                     this.autocomplete($selectable) && $e.preventDefault();
                 }
             },
-            _onEscKeyed: function onEscKeyed() {
+            _onEscKeyed: function onEscKeyed(type, $e) {
+                $e.preventDefault();
+                $e.stopPropagation();
                 this.close();
             },
             _onUpKeyed: function onUpKeyed() {
