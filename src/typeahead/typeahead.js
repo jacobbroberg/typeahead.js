@@ -178,7 +178,9 @@ var Typeahead = (function() {
       }
     },
 
-    _onEscKeyed: function onEscKeyed() {
+    _onEscKeyed: function onEscKeyed(type, $e) {
+      $e.preventDefault();
+      $e.stopPropagation();
       this.close();
     },
 

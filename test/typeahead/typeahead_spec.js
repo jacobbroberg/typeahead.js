@@ -518,7 +518,7 @@ describe('Typeahead', function() {
 
     beforeEach(function() {
       eventName = 'escKeyed';
-      payload = jasmine.createSpyObj('event', ['preventDefault']);
+      payload = jasmine.createSpyObj('event', ['preventDefault', 'stopPropagation']);
     });
 
     describe('when idle', function() {
@@ -538,10 +538,12 @@ describe('Typeahead', function() {
         this.view.activate();
       });
 
-      it('should close', function() {
+      it('should close and stop propagation', function() {
         spyOn(this.view, 'close');
         this.input.trigger(eventName, payload);
         expect(this.view.close).toHaveBeenCalled();
+        expect(payload.preventDefault).toHaveBeenCalled();
+        expect(payload.stopPropagation).toHaveBeenCalled();
       });
     });
   });
